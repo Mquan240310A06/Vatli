@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 3: Năng lượng hoạt hóa của phản ứng hóa học</title>
+    <meta
+      name="description"
+      content="Thuyết trình tương tác Hóa học 10: Năng lượng hoạt hóa của phản ứng hóa học"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              night: '#060816',
+              panel: '#101827',
+              cyanGlow: '#34d3ff',
+              violetGlow: '#8b5cf6',
+              mint: '#7ef9d6',
+              amberGlow: '#fbbf24'
+            },
+            boxShadow: {
+              neon: '0 0 20px rgba(52, 211, 255, 0.35), 0 0 40px rgba(139, 92, 246, 0.22)'
+            }
+          }
+        }
+      };
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwUEQp5CB7E4F6dE6eXg7m90OQeD5B6DdJ+g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+
+    <header class="floating-toolbar glass-panel">
+      <div class="toolbar-left">
+        <div class="brand">
+          <i class="fa-solid fa-flask-vial"></i>
+          <span>Hóa 10</span>
+        </div>
+      </div>
+
+      <div class="toolbar-center">
+        <button class="nav-btn" id="prevBtn" aria-label="Trang trước">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="slide-indicator" id="slide-indicator">1 / 7</div>
+        <button class="nav-btn" id="nextBtn" aria-label="Trang tiếp theo">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="toolbar-right">
+        <button class="nav-btn" id="fullscreenBtn" aria-label="Toàn màn hình">
+          <i class="fa-solid fa-expand"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="slides-shell">
+      <section class="slide active" data-slide="0">
+        <div class="slide-inner hero-slide">
+          <div class="hero-badge">
+            <span class="chip">Chuyên đề Hóa học 10</span>
+            <span class="chip chip-secondary">Bài 3</span>
+          </div>
+
+          <h1>
+            Năng lượng hoạt hóa của<br />
+            phản ứng hóa học
+          </h1>
+
+          <p class="subtitle">
+            Từ trang 19 đến 23 - Thuyết trình tương tác và hệ thống hóa kiến thức
+          </p>
+
+          <div class="hero-card glass-panel">
+            <h3>Khởi động</h3>
+            <p>
+              Hỗn hợp <span class="formula">H₂</span> và <span class="formula">O₂</span>
+              ở điều kiện thường không phản ứng, nhưng chỉ cần một chút bột
+              <span class="formula">Pt</span> là có thể tạo ra nước và phát nổ.
+            </p>
+            <p>
+              Vậy yếu tố nào quyết định tốc độ phản ứng? Câu trả lời nằm ở chính
+              <span class="accent">năng lượng hoạt hóa</span>.
+            </p>
+          </div>
+
+          <div class="hero-grid">
+            <div class="mini-stat glass-panel">
+              <span class="mini-label">Đề tài</span>
+              <strong>Năng lượng hoạt hóa</strong>
+            </div>
+            <div class="mini-stat glass-panel">
+              <span class="mini-label">Chủ đề</span>
+              <strong>Phản ứng hóa học</strong>
+            </div>
+            <div class="mini-stat glass-panel">
+              <span class="mini-label">Mục tiêu</span>
+              <strong>Hiểu cơ chế & ứng dụng</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="1">
+        <div class="slide-inner content-slide">
+          <div class="section-heading">
+            <span class="eyebrow">Slide 2</span>
+            <h2>Khái niệm năng lượng hoạt hóa & thuyết va chạm</h2>
+          </div>
+
+          <div class="two-col">
+            <div class="glass-panel info-card">
+              <h3>Va chạm hiệu quả</h3>
+              <p>
+                Va chạm hiệu quả là va chạm giữa các phân tử có đủ
+                <strong>độ năng lượng</strong> và <strong>hướng chiều</span> thích hợp
+                để phá vỡ liên kết cũ và hình thành liên kết mới.
+              </p>
+              <div class="formula-box">
+                <span class="label">Năng lượng hoạt hóa</span>
+                <div class="equation">\(E_a\)</div>
+                <p>
+                  Là năng lượng tối thiểu cần cung cấp để các chất phản ứng vượt qua
+                  rào cản năng lượng và hình thành trạng thái chuyển tiếp.
+                </p>
+              </div>
+              <ul class="check-list">
+                <li>Đơn vị: <span class="formula">kJ/mol</span> hoặc <span class="formula">J/mol</span></li>
+                <li>Độ lớn của <span class="formula">E_a</span> quyết định tốc độ phản ứng</li>
+                <li>Phản ứng nhanh thường có <span class="formula">E_a</span> thấp hơn</li>
+              </ul>
+            </div>
+
+            <div class="glass-panel chart-panel">
+              <h3>Giản đồ năng lượng</h3>
+              <canvas id="energyChart" width="600" height="320"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="2">
+        <div class="slide-inner content-slide">
+          <div class="section-heading">
+            <span class="eyebrow">Slide 3</span>
+            <h2>Phương trình Arrhenius & công thức tính toán</h2>
+          </div>
+
+          <div class="two-col">
+            <div class="glass-panel info-card">
+              <h3>Phương trình Arrhenius</h3>
+              <div class="equation large">\[k = A \cdot e^{-E_a/RT}\]</div>
+
+              <div class="equation-block">
+                <p><span class="key">k</span>: hằng số tốc độ</p>
+                <p><span class="key">A</span>: hệ số tần số, phụ thuộc vào cấu trúc và va chạm</p>
+                <p><span class="key">E_a</span>: năng lượng hoạt hóa</p>
+                <p><span class="key">R</span> = 8.314 J·mol⁻¹·K⁻¹</p>
+                <p><span class="key">T</span>: nhiệt độ tuyệt đối (K)</p>
+              </div>
+
+              <div class="equation-block">
+                <h4>So sánh 2 nhiệt độ</h4>
+                <div class="equation">\[\ln\left(\frac{k_2}{k_1}\right)=\frac{E_a}{R}\left(\frac{1}{T_1}-\frac{1}{T_2}\right)\]</div>
+              </div>
+            </div>
+
+            <div class="glass-panel calc-panel">
+              <h3>Calculator tương tác</h3>
+
+              <div class="selector-wrap">
+                <label for="calcMode">Chế độ tính</label>
+                <select id="calcMode">
+                  <option value="rateRatio">Tính tỉ số tốc độ k₂/k₁</option>
+                  <option value="activationEnergy">Tính Ea từ k₂/k₁</option>
+                </select>
+              </div>
+
+              <div class="input-grid">
+                <div>
+                  <label for="t1Input">T₁ (K)</label>
+                  <input type="number" id="t1Input" value="300" step="0.1" />
+                </div>
+                <div>
+                  <label for="t2Input">T₂ (K)</label>
+                  <input type="number" id="t2Input" value="310" step="0.1" />
+                </div>
+                <div id="eaFieldWrap">
+                  <label for="eaInput">Eₐ (kJ/mol)</label>
+                  <input type="number" id="eaInput" value="50" step="0.1" />
+                </div>
+                <div id="ratioFieldWrap" class="hidden">
+                  <label for="ratioInput">k₂/k₁</label>
+                  <input type="number" id="ratioInput" value="3" step="0.01" />
+                </div>
+              </div>
+
+              <button id="calculateBtn" class="primary-btn">
+                <i class="fa-solid fa-calculator"></i>
+                Tính toán
+              </button>
+
+              <div class="result-box" id="calcResult">
+                Kết quả sẽ hiển thị ở đây.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="3">
+        <div class="slide-inner content-slide">
+          <div class="section-heading">
+            <span class="eyebrow">Slide 4</span>
+            <h2>Giải bài tập mẫu SGK</h2>
+          </div>
+
+          <div class="exercise-grid">
+            <article class="glass-panel exercise-card">
+              <div class="exercise-header">
+                <span class="badge">Bài 1</span>
+                <h3>Phân hủy NOCl</h3>
+              </div>
+              <p>
+                Tại 350 K, phản ứng phân hủy NOCl diễn ra với hằng số tốc độ
+                <span class="formula">k₁ = 1,2 × 10⁻⁵ s⁻¹</span>.
+                Tại 400 K, hằng số tốc độ là <span class="formula">k₂ = 5,6 × 10⁻⁴ s⁻¹</span>.
+                Tính <span class="formula">Eₐ</span>.
+              </p>
+              <div class="equation small">\[\ln\left(\frac{k_2}{k_1}\right)=\frac{E_a}{R}\left(\frac{1}{T_1}-\frac{1}{T_2}\right)\]</div>
+              <button class="accordion-toggle" data-target="bai1detail">
+                Xem lời giải chi tiết <i class="fa-solid fa-angle-down"></i>
+              </button>
+              <div class="accordion-content" id="bai1detail">
+                <p>
+                  Ta có: <span class="formula">k₂/k₁ = 5,6×10⁻⁴ / 1,2×10⁻⁵ = 46,7</span>
+                </p>
+                <p>
+                  \\(\ln(46,7) = 3,84\\), \\(1/350 - 1/400 = 0,000714\\)
+                </p>
+                <p>
+                  \\(E_a = R \cdot \ln(k_2/k_1) / (1/T_1 - 1/T_2)\)
+                </p>
+                <p>
+                  \\(E_a ≈ 8,314 × 3,84 / 0,000714 ≈ 44,7\,kJ/mol\)
+                </p>
+              </div>
+            </article>
+
+            <article class="glass-panel exercise-card">
+              <div class="exercise-header">
+                <span class="badge">Bài 2</span>
+                <h3>Tăng nhiệt độ</h3>
+              </div>
+              <p>
+                Khi nhiệt độ tăng từ <span class="formula">300 K</span> lên
+                <span class="formula">310 K</span>, tốc độ phản ứng tăng gấp 3 lần.
+                Tính năng lượng hoạt hóa của phản ứng.
+              </p>
+              <div class="equation small">\[E_a = R \cdot \frac{\ln(k_2/k_1)}{1/T_1 - 1/T_2}\]</div>
+              <button class="accordion-toggle" data-target="bai2detail">
+                Xem lời giải chi tiết <i class="fa-solid fa-angle-down"></i>
+              </button>
+              <div class="accordion-content" id="bai2detail">
+                <p>
+                  Vì tốc độ tăng gấp 3 lần nên <span class="formula">k₂/k₁ = 3</span>
+                </p>
+                <p>
+                  \\(\ln 3 ≈ 1,099\\), \\(1/300 - 1/310 = 0,000108\\)
+                </p>
+                <p>
+                  \\(E_a = 8,314 × 1,099 / 0,000108 ≈ 84,6\,kJ/mol\)
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="4">
+        <div class="slide-inner content-slide">
+          <div class="section-heading">
+            <span class="eyebrow">Slide 5</span>
+            <h2>Bản chất & cơ chế của chất xúc tác</h2>
+          </div>
+
+          <div class="two-col">
+            <div class="glass-panel info-card">
+              <h3>Chất xúc tác</h3>
+              <p>
+                Chất xúc tác là chất làm tăng tốc độ phản ứng nhờ cách tạo ra
+                con đường phản ứng mới với năng lượng hoạt hóa thấp hơn.
+              </p>
+              <ul class="check-list">
+                <li>Không làm thay đổi số mol chất phản ứng hoặc sản phẩm</li>
+                <li>Tham gia vào cơ chế phản ứng nhưng được tái tạo ở cuối</li>
+                <li>Không làm đổi <span class="formula">Δ_rH</span></li>
+              </ul>
+              <div class="equation-block">
+                <h4>Ý nghĩa</h4>
+                <div class="equation">\[E_a' < E_a\]</div>
+                <p>Phản ứng có xúc tác đi qua đường năng lượng thấp hơn, do đó tăng tốc độ.</p>
+              </div>
+            </div>
+
+            <div class="glass-panel chart-panel">
+              <h3>So sánh 2 đường cong năng lượng</h3>
+              <canvas id="catalysisChart" width="600" height="320"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="5">
+        <div class="slide-inner content-slide">
+          <div class="section-heading">
+            <span class="eyebrow">Slide 6</span>
+            <h2>Cơ chế phân hủy tầng ozone & bài toán định lượng</h2>
+          </div>
+
+          <div class="two-col">
+            <div class="glass-panel info-card">
+              <h3>Chu trình xúc tác Cl•</h3>
+              <ol class="number-list">
+                <li><span class="formula">Cl· + O₃ → ClO· + O₂</span></li>
+                <li><span class="formula">ClO· + O₃ → Cl· + 2O₂</span></li>
+              </ol>
+              <p>
+                Gốc <span class="formula">Cl·</span> xuất hiện ở đầu và cuối chu trình,
+                nên được xem là <strong>chất xúc tác</strong>.
+              </p>
+              <div class="equation-block highlight">
+                <h4>So sánh năng lượng hoạt hóa</h4>
+                <div class="equation">\[E_a(\text{không xúc tác}) = 55.4\,kJ/mol\]</div>
+                <div class="equation">\[E_a(\text{có xúc tác}) = 13.5\,kJ/mol\]</div>
+                <p>Vì <span class="formula">Eₐ</span> giảm mạnh, nên tốc độ phản ứng tăng rõ rệt.</p>
+              </div>
+            </div>
+
+            <div class="glass-panel calc-panel">
+              <h3>Đánh giá định lượng</h3>
+              <p>
+                Giả sử ở cùng nhiệt độ, hiệu ứng của xúc tác có thể ước lượng theo:
+              </p>
+              <div class="equation small">\[\frac{k_{xúc\ tác}}{k_{không\ xúc\ tác}} = e^{\frac{(E_{a,không}-E_{a,xúc})}{RT}}\]</div>
+              <div class="info-box">
+                <p><strong>ΔEₐ</strong> = 55.4 - 13.5 = 41.9 kJ/mol</p>
+                <p>
+                  Ở cùng <span class="formula">T</span>, độ giảm này làm tăng tốc độ rất mạnh.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide="6">
+        <div class="slide-inner content-slide">
+          <div class="section-heading">
+            <span class="eyebrow">Slide 7</span>
+            <h2>Ứng dụng thực tiễn & tổng kết</h2>
+          </div>
+
+          <div class="application-grid">
+            <div class="glass-panel app-card">
+              <i class="fa-solid fa-dna"></i>
+              <h3>Sinh học</h3>
+              <p>Enzyme như amylase, pepsin hoạt động hiệu quả ở 37°C.</p>
+            </div>
+            <div class="glass-panel app-card">
+              <i class="fa-solid fa-industry"></i>
+              <h3>Công nghiệp</h3>
+              <p>Haber-Bosch (Fe), H₂SO₄ (V₂O₅), xử lý khí thải ô tô (Pt/Pd/Rh).</p>
+            </div>
+            <div class="glass-panel app-card">
+              <i class="fa-solid fa-rocket"></i>
+              <h3>Đời sống</h3>
+              <p>Chất xúc tác giúp tăng hiệu suất, tiết kiệm năng lượng và cải thiện an toàn.</p>
+            </div>
+          </div>
+
+          <div class="quiz-panel glass-panel">
+            <h3>Mini Quiz</h3>
+            <div class="quiz-item">
+              <p>1. Năng lượng hoạt hóa là năng lượng tối thiểu để các phân tử có thể phản ứng?</p>
+              <div class="quiz-options" data-question="1">
+                <button class="quiz-option" data-correct="true">Đúng</button>
+                <button class="quiz-option" data-correct="false">Sai</button>
+              </div>
+            </div>
+
+            <div class="quiz-item">
+              <p>2. Chất xúc tác làm thay đổi ΔrH của phản ứng?</p>
+              <div class="quiz-options" data-question="2">
+                <button class="quiz-option" data-correct="false">Có</button>
+                <button class="quiz-option" data-correct="true">Không</button>
+              </div>
+            </div>
+
+            <div class="quiz-item">
+              <p>3. Khi Ea giảm thì tốc độ phản ứng có xu hướng:</p>
+              <div class="quiz-options" data-question="3">
+                <button class="quiz-option" data-correct="false">Giảm</button>
+                <button class="quiz-option" data-correct="true">Tăng</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/chart.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
